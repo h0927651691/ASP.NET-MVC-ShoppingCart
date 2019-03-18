@@ -24,7 +24,7 @@ namespace ShoppingCarts.Controllers
         public ActionResult Index3(string id, string page)
         {
             return Content(
-                String.Format("id的值為:{0}, page的值為:{1}", id, page)
+                String.Format("id的值為:{0}, pageYEEEEE的值為:{1}", id, page)
                 );
         }
     }
