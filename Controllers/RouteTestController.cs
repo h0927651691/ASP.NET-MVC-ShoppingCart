@@ -11,7 +11,7 @@ namespace ShoppingCarts.Controllers
         // GET: RouteTest
         public ActionResult Index()
         {
-            return Content("INDEX");
+            //return Content("INDEX");
             return View();
         }
         public ActionResult Index2(string id)
