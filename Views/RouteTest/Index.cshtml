@@ -1,33 +1,14 @@
-﻿
+﻿@* 指定model資料型態為list<ShoppingCarts.Models.RouteTest.TempProducts> *@
+@model List<ShoppingCarts.Models.RouteTest.TempProducts>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    IList<ShoppingCarts.Models.RouteTest.TempProducts> productList =
-        new List<ShoppingCarts.Models.RouteTest.TempProducts>();
-
-    productList.Add(new ShoppingCarts.Models.RouteTest.TempProducts {
-        ID = 1,
-        Name = "自動鉛筆",
-        Price = 50.0m
-    });
-    productList.Add(new ShoppingCarts.Models.RouteTest.TempProducts
-    {
-        ID = 2,
-        Name = "記事本",
-        Price = 50.0m
-    });
-    productList.Add(new ShoppingCarts.Models.RouteTest.TempProducts
-    {
-        ID = 3,
-        Name = "橡皮擦",
-        Price = 10.0m
-    });
 }
 
 <h2>商品列表</h2>
 
-<table>
+<table class="table">
     <thead>
         <tr>
             <td>編號</td>
@@ -36,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var product in productList)
+        @foreach(var product in this.Model)
         {
             <tr>
                 <td>@product.ID</td>
