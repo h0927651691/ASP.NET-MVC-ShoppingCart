@@ -11,8 +11,9 @@ namespace ShoppingCarts.Controllers
         // GET: RouteTest
         public ActionResult Index()
         {
+            var result = Models.RouteTest.TempProducts.getAllproducts();
             //return Content("INDEX");
-            return View();
+            return View(result);
         }
         public ActionResult Index2(string id)
         {

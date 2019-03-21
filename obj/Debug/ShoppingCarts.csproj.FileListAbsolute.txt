@@ -33,3 +33,8 @@ C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\obj\Debug\ShoppingCarts.
 C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\obj\Debug\ShoppingCarts.csproj.CopyComplete
 C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\obj\Debug\ShoppingCarts.dll
 C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\obj\Debug\ShoppingCarts.pdb
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\EntityFramework.dll
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\EntityFramework.SqlServer.dll
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\EntityFramework.xml
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\EntityFramework.SqlServer.xml
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\zh-Hant\EntityFramework.resources.dll
