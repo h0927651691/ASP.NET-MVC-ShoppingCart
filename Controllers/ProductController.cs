@@ -26,5 +26,24 @@ namespace ShoppingCarts.Controllers
             }
                 
         }
+        //建立商品頁面
+        public ActionResult Create()
+        {
+            return View(); 
+        }
+        //建立商品頁面 - 資料傳回處理
+        [HttpPost] //指定只有POST方法才可進入
+        public ActionResult Create(Models.Product postback)
+        {
+            using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())
+            {
+                //將回傳資料postback加入至Products
+                db.Products.Add(postback);
+
+                //儲存異動資料
+                db.SaveChanges();
+            }
+            return View();
+        }
     }
 }
