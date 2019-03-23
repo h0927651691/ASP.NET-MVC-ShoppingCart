@@ -5,10 +5,13 @@
 }
 
 <h2>商品列表</h2>
-
+@{
+    @Html.Label("", (string)ViewBag.ResultMessage, new { @class = "text-info" })
+ }
 <table class="table">
     <thead>
         <tr>
+            <td colspan="2">操作</td>
             <td>編號</td>
             <td>名稱</td>
             <td>描述</td>
@@ -16,10 +19,23 @@
             <td>庫存</td>
         </tr>
     </thead>
-    <tbody>
+    <tbody >
         @foreach (var product in this.Model) /*使用foreach將所有商品列出*/
         {
-        <tr>
+        <tr class="fadeInDown animated">
+            <td>
+                @Html.ActionLink(
+                "編輯","Edit", new { id = product.Id}, new { @class = "btn btn-default"}
+                )
+            </td>
+            <td>
+                @using (@Html.BeginForm("Delete", "Product", FormMethod.Post, new { @class = "Delete" }))
+                {
+                    @Html.Hidden("id", product.Id)
+                    <input type="submit" value="刪除" class="btn btn-danger">
+                }
+            </td>
+
             <td>@product.Id</td>
             <td>@product.Name</td>
             <td>@product.Description</td>
