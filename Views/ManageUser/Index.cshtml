@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ShoppingCarts.Models.ManageUser>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>網站會員管理</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <td>暱稱</td>
+            <td>電子郵件</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+        <tr class="fadeInDown animated">
+            <td>
+             @Html.DisplayFor(modelitem => item.UserName)
+            </td>
+            <td>
+            @Html.DisplayFor(modelitem => item.Email)
+            </td>
+            <td>
+                @Html.ActionLink(
+                "編輯","Edit", new { id = item.Id}, new { @class = "btn btn-default"}
+                )
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
