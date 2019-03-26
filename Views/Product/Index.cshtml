@@ -5,9 +5,14 @@
 }
 
 <h2>商品列表</h2>
+
+    @Html.ActionLink("建立", "Create", "Product", new { @class = "btn btn-default" })
+
+
 @{
     @Html.Label("", (string)ViewBag.ResultMessage, new { @class = "text-info" })
  }
+    
 <table class="table">
     <thead>
         <tr>
