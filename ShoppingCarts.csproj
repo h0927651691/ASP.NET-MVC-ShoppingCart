@@ -165,6 +165,7 @@
     <Compile Include="Controllers\ManageUserController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RouteTestController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,9 +173,12 @@
     <Compile Include="Models\AspNetUsers.cs">
       <DependentUpon>UserEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cart\Cart.cs" />
+    <Compile Include="Models\Cart\CartItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Cart\Operation.cs" />
     <Compile Include="Models\Product.cs">
       <DependentUpon>ShoppingCarts.tt</DependentUpon>
     </Compile>
@@ -356,6 +360,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
