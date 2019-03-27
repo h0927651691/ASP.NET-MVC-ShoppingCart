@@ -49,8 +49,9 @@ namespace ShoppingCarts.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "電子郵件")]
-        [EmailAddress]
+        //[Display(Name = "電子郵件")]
+        //[EmailAddress]
+        [Display(Name = "暱稱")]
         public string Email { get; set; }
 
         [Required]
