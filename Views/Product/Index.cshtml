@@ -8,21 +8,24 @@
 @{
     @Html.Label("", (string)ViewBag.ResultMessage, new { @class = "text-info" })
  }
+@Html.ActionLink("新增商品","Create","Product",new { },new {@class = "btn btn-info"})
 <table class="table">
     <thead>
         <tr>
             <td colspan="2">操作</td>
+            <td>商品圖</td>
             <td>編號</td>
             <td>名稱</td>
             <td>描述</td>
             <td>售價</td>
             <td>庫存</td>
+
         </tr>
     </thead>
     <tbody >
         @foreach (var product in this.Model) /*使用foreach將所有商品列出*/
         {
-        <tr class="fadeInDown animated">
+        <tr class="">
             <td>
                 @Html.ActionLink(
                 "編輯","Edit", new { id = product.Id}, new { @class = "btn btn-default"}
@@ -35,7 +38,7 @@
                     <input type="submit" value="刪除" class="btn btn-danger">
                 }
             </td>
-
+            <td><img src="@product.DefaultImageURL" width="100" height="100" alt="Alternate Text" /></td>
             <td>@product.Id</td>
             <td>@product.Name</td>
             <td>@product.Description</td>

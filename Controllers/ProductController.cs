@@ -84,6 +84,7 @@ namespace ShoppingCarts.Controllers
                     result.PublishDate = postback.PublishDate; result.Quantity = postback.Quantity;
                     result.Status = postback.Status; result.CategoryID = postback.CategoryID;
                     result.DefaultImageId = postback.DefaultImageId; result.Description = postback.Description;
+                    result.DefaultImageURL = postback.DefaultImageURL;
 
                     //儲存所有變更
                     db.SaveChanges();

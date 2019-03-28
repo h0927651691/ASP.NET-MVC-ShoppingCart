@@ -21,6 +21,7 @@
     <Property Name="Quantity" Type="int" Nullable="false" />
     <Property Name="DefaultImageId" Type="bigint" Nullable="false" />
     <Property Name="PublishDate" Type="datetime" Nullable="false" />
+    <Property Name="DefaultImageURL" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -42,6 +43,7 @@
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="DefaultImageId" Type="Int64" Nullable="false" />
           <Property Name="PublishDate" Type="DateTime" Nullable="false" />
+          <Property Name="DefaultImageURL" Type="String" Nullable="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -61,6 +63,7 @@
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="DefaultImageId" ColumnName="DefaultImageId" />
           <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="DefaultImageURL" ColumnName="DefaultImageURL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -23,5 +23,6 @@ namespace ShoppingCarts.Models
         public int Quantity { get; set; }
         public long DefaultImageId { get; set; }
         public System.DateTime PublishDate { get; set; }
+        public string DefaultImageURL { get; set; }
     }
 }

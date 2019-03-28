@@ -16,5 +16,6 @@
     <Property Name="Quantity" Type="Int32" Nullable="false" />
     <Property Name="DefaultImageId" Type="Int64" Nullable="false" />
     <Property Name="PublishDate" Type="DateTime" Nullable="false" />
+    <Property Name="DefaultImageURL" Type="String" Nullable="true" />
   </EntityType>
 </Schema>

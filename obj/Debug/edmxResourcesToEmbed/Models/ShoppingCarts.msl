@@ -13,6 +13,7 @@
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
           <ScalarProperty Name="DefaultImageId" ColumnName="DefaultImageId" />
           <ScalarProperty Name="PublishDate" ColumnName="PublishDate" />
+          <ScalarProperty Name="DefaultImageURL" ColumnName="DefaultImageURL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
