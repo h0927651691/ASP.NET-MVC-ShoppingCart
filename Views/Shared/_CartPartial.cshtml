@@ -1,16 +1,36 @@
 ﻿@{ 
     //取得當前購物車所有內容
+    var currentCart = ShoppingCarts.Models.Cart.Operation.GetCurrentCart();
 }
     
 <a id="CartDropDown" class="dropdown-toggle" data-toggle="dropdown">
-    共500元(3)
+    @String.Format("共{0}元 ({1})", currentCart.TotalAmount,currentCart.Count)
     <span class="caret"></span>
 </a>
-<ul class="dropdown-menu" role="menu" aria-labelledby="CartDropDown">
-    <li><a>可愛鉛筆 <span>100元 x 1</span></a></li>
-    <li><a>可愛橡皮擦<span>50元 x 2</span></a> </li>
-    <li><a>可愛墊板<span>150元 x 2</span></a></li>
-    <li class="divider"></li>
-    <li>   <a class="btn btn-default text-center" href="#">結帳去</a></li>
+<ul class="dropdown-menu Cart" role="menu" aria-labelledby="CartDropDown" data-toggle="dropdown">
+    @if (currentCart.Count > 0)
+    {
+        foreach (var cartitem in currentCart)
+        {
+    <li class="col-xs-12">
+        <a>
+            <span class="col-xs-10 ">@cartitem.Name @cartitem.Price 元 X @cartitem.Quantity </span>
+            <span class="btn btn-danger col-xs-2 " onclick="RemoveFromCart('@cartitem.Id')">
+                X
+            </span>
+        </a>
+        @*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*@
+
+    </li>
+        }
+
+        <li class="divider"></li>
+        <li>   <a class="btn btn-default text-center" href="#">結帳去</a></li>
+
+    }
+    else
+    {
+        <li><a href="#" class="btn btn-default text-center">購物車內無任何商品</a></li>
+    }
 
 </ul>

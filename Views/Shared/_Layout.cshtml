@@ -5,9 +5,37 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 應用程式</title>
+    @Scripts.Render("~/bundles/jquery")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+   @* 購物車JS *@
+    <script type="text/javascript">
+        //網頁載入完成時執行JS
+        $(document).ready(function () {
+            console.log("開始執行");
+        });
+        //加入編號為productId的商品進入購物車
+        function AddToCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddToCart","Cart")',
+                data: { id: productId }
+            })
+                .done(function (msg) {
+                    $('li#Cart').html(msg);
+                });
+        }
+        function RemoveFromCart(productId) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("RemoveFromCart","Cart")',
+                data: { id: productId }
+            })
+            .done(function (msg) {
+            $('li#Cart').html(msg);
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
