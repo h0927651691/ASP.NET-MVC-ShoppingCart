@@ -24,6 +24,7 @@ namespace ShoppingCarts.Models.Cart
                 return this.Price * this.Quantity;
             }
         }
+        public string DefaultImageURL { get; set; }
     }
 
 

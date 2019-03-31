@@ -12,17 +12,14 @@ namespace ShoppingCarts.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class OrderDetail
     {
         public int Id { get; set; }
+        public int OrderId { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public int CategoryID { get; set; }
         public decimal Price { get; set; }
-        public bool Status { get; set; }
         public int Quantity { get; set; }
-        public Nullable<long> DefaultImageId { get; set; }
-        public System.DateTime PublishDate { get; set; }
-        public string DefaultImageURL { get; set; }
+    
+        public virtual Order Order { get; set; }
     }
 }

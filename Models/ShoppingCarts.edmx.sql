@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/28/2019 21:08:49
+-- Date Created: 03/31/2019 21:43:07
 -- Generated from EDMX file: C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\Models\ShoppingCarts.edmx
 -- --------------------------------------------------
 
@@ -17,6 +17,9 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_OrderOrderDetail]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrderDetails] DROP CONSTRAINT [FK_OrderOrderDetail];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -24,6 +27,12 @@ GO
 
 IF OBJECT_ID(N'[dbo].[Products]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Products];
+GO
+IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Orders];
+GO
+IF OBJECT_ID(N'[dbo].[OrderDetails]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[OrderDetails];
 GO
 
 -- --------------------------------------------------
@@ -39,9 +48,29 @@ CREATE TABLE [dbo].[Products] (
     [Price] decimal(28,3)  NOT NULL,
     [Status] bit  NOT NULL,
     [Quantity] int  NOT NULL,
-    [DefaultImageId] bigint  NOT NULL,
+    [DefaultImageId] bigint  NULL,
     [PublishDate] datetime  NOT NULL,
     [DefaultImageURL] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'Orders'
+CREATE TABLE [dbo].[Orders] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [UserId] nvarchar(max)  NOT NULL,
+    [ReceiverName] nvarchar(max)  NOT NULL,
+    [ReceiverPhone] nvarchar(max)  NOT NULL,
+    [ReceiverAddress] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'OrderDetails'
+CREATE TABLE [dbo].[OrderDetails] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [OrderId] int  NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Price] decimal(18,0)  NOT NULL,
+    [Quantity] int  NOT NULL
 );
 GO
 
@@ -55,9 +84,36 @@ ADD CONSTRAINT [PK_Products]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'Orders'
+ALTER TABLE [dbo].[Orders]
+ADD CONSTRAINT [PK_Orders]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'OrderDetails'
+ALTER TABLE [dbo].[OrderDetails]
+ADD CONSTRAINT [PK_OrderDetails]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
+
+-- Creating foreign key on [OrderId] in table 'OrderDetails'
+ALTER TABLE [dbo].[OrderDetails]
+ADD CONSTRAINT [FK_OrderOrderDetail]
+    FOREIGN KEY ([OrderId])
+    REFERENCES [dbo].[Orders]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrderOrderDetail'
+CREATE INDEX [IX_FK_OrderOrderDetail]
+ON [dbo].[OrderDetails]
+    ([OrderId]);
+GO
 
 -- --------------------------------------------------
 -- Script has ended

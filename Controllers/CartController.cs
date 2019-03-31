@@ -32,5 +32,11 @@ namespace ShoppingCarts.Controllers
             currentCart.RemoveProduct(id);
             return PartialView("_CartPartial");
         }
+        public ActionResult ClearCart()
+        {
+            var currentCart = Models.Cart.Operation.GetCurrentCart();
+            currentCart.ClearCart();
+            return PartialView("_CartPartial");
+        }
     }
 }

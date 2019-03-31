@@ -35,6 +35,17 @@
             $('li#Cart').html(msg);
             });
         }
+        function ClearCart() {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ClearCart","Cart")',
+                data: {}
+            })
+                .done(function (msg) {
+                    //將回傳的購物車頁面，填入li#Cart
+                    $('li#Cart').html(msg);
+                });
+        }
     </script>
 </head>
 <body>

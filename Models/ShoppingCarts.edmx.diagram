@@ -6,6 +6,9 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2fa10dc990514bc99a02427df2329d81" Name="Diagram1" >
         <EntityTypeShape EntityType="ShoppingCartsModel.Product" Width="1.5" PointX="4" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShoppingCartsModel.Order" Width="1.5" PointX="6" PointY="1.375" />
+        <EntityTypeShape EntityType="ShoppingCartsModel.OrderDetail" Width="1.5" PointX="8.125" PointY="1.375" />
+        <AssociationConnector Association="ShoppingCartsModel.OrderOrderDetail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
