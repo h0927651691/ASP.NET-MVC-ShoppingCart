@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 
 namespace ShoppingCarts.Controllers
 {
@@ -42,12 +43,15 @@ namespace ShoppingCarts.Controllers
                     {
                         db.SaveChanges();
                     }
-                    catch (DbUpdateConcurrencyException ex)
+                    catch (DbEntityValidationException deEx)
                     {
-
-                        throw ex;
-                        //string ErrorMsg = ex.Message;
-                        //throw ErrorMsg;
+                        foreach (var validationError in deEx.EntityValidationErrors)
+                        {
+                            foreach (var dbValidationError in validationError.ValidationErrors)
+                            {
+                                throw new Exception( dbValidationError.ErrorMessage);
+                            }
+                        }
                     }
 
                     //db.SaveChanges();
@@ -61,18 +65,53 @@ namespace ShoppingCarts.Controllers
                     {
                         db.SaveChanges();
                     }
-                    catch (DbUpdateConcurrencyException ex)
+                    catch (DbEntityValidationException deEx)
                     {
-
-                        throw ex;
-                       // string ErrorMsg = ex.Message;
+                        foreach (var validationError in deEx.EntityValidationErrors)
+                        {
+                            foreach (var dbValidationError in validationError.ValidationErrors)
+                            {
+                                throw new Exception(dbValidationError.ErrorMessage);
+                            }
+                        }
                     }
 
-                    //db.SaveChanges();
                 }
                 return Content("訂購成功");
             }
             return View();
+        }
+
+        public ActionResult MyOrder()
+        {
+            //取得目前使用者Id
+            var userId = HttpContext.User.Identity.GetUserId();
+
+            using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())
+            {
+                var result = (from s in db.Orders
+                              where s.UserId == userId
+                              select s).ToList();
+                return View(result);
+            }
+        }
+        public ActionResult MyOrderDetail(int id)
+        {
+            using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())
+            {
+                var result = (from s in db.OrderDetails
+                              where s.OrderId == id
+                              select s).ToList();
+                if (result.Count == 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(result);
+                }
+
+            }
         }
     }
 }

@@ -163,6 +163,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManageOrderController.cs" />
     <Compile Include="Controllers\ManageUserController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -188,6 +189,7 @@
       <DependentUpon>ShoppingCarts.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderModel\Ship.cs" />
+    <Compile Include="Models\PatialClass.cs" />
     <Compile Include="Models\Product.cs">
       <DependentUpon>ShoppingCarts.tt</DependentUpon>
     </Compile>
@@ -421,6 +423,10 @@
     <Content Include="Views\ManageUser\Edit.cshtml" />
     <Content Include="Views\Shared\_CartPartial.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\ManageOrder\Index.cshtml" />
+    <Content Include="Views\ManageOrder\Details.cshtml" />
+    <Content Include="Views\Order\MyOrder.cshtml" />
+    <Content Include="Views\Order\MyOrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
