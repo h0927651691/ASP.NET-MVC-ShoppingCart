@@ -8,6 +8,7 @@
       <End Role="Order" EntitySet="Orders" />
       <End Role="OrderDetail" EntitySet="OrderDetails" />
     </AssociationSet>
+    <EntitySet Name="ProductComments" EntityType="ShoppingCartsModel.ProductComment" />
   </EntityContainer>
   <EntityType Name="Product">
     <Key>
@@ -58,4 +59,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="ProductComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" />
+    <Property Name="Content" Type="String" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+  </EntityType>
 </Schema>

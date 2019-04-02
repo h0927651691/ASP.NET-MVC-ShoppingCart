@@ -9,6 +9,7 @@
     <EntitySet Name="Products" EntityType="ShoppingCartsModel.Store.Products" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Orders" EntityType="ShoppingCartsModel.Store.Orders" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrderDetails" EntityType="ShoppingCartsModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductComments" EntityType="ShoppingCartsModel.Store.ProductComments" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="OrderOrderDetail" Association="ShoppingCartsModel.Store.OrderOrderDetail">
       <End Role="Order" EntitySet="Orders" />
       <End Role="OrderDetail" EntitySet="OrderDetails" />
@@ -49,6 +50,16 @@
     <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="0" />
     <Property Name="Quantity" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="ProductComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="OrderOrderDetail">
     <End Role="Order" Type="ShoppingCartsModel.Store.Orders" Multiplicity="1" />
     <End Role="OrderDetail" Type="ShoppingCartsModel.Store.OrderDetails" Multiplicity="*" />
@@ -73,6 +84,7 @@
             <End Role="Order" EntitySet="Orders" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
+          <EntitySet Name="ProductComments" EntityType="ShoppingCartsModel.ProductComment" />
         </EntityContainer>
         <EntityType Name="Product">
           <Key>
@@ -123,6 +135,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ProductComment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -164,6 +186,17 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductComments">
+      <EntityTypeMapping TypeName="IsTypeOf(ShoppingCartsModel.ProductComment)">
+        <MappingFragment StoreEntitySet="ProductComments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -28,5 +28,6 @@ namespace ShoppingCarts.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+        public virtual DbSet<ProductComment> ProductComments { get; set; }
     }
 }

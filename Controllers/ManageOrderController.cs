@@ -39,6 +39,35 @@ namespace ShoppingCarts.Controllers
                 }
             }
         }
+        public ActionResult SearchByUserName(string UserName)
+        {
+            //儲存查詢出來的UserId
+            string searchUserId = null;
+            using (Models.UserEntities db = new Models.UserEntities())
+            {
+                searchUserId = (from s in db.AspNetUsers
+                                where s.UserName == UserName
+                                select s.Id).FirstOrDefault();
+            }
+            //如果有存在UserId
+            if(!String.IsNullOrEmpty(searchUserId))
+            {
+                //則將此UserId的所有訂單找出
+                using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())
+                {
+                    var result = (from s in db.Orders
+                                  where s.UserId == searchUserId
+                                  select s).ToList();
+                    //回傳 結果 至Index()的View
+                    return View("Index", result);
+                }
+            }
+            else
+            {
+                //回傳空結果
+                return View("Index", new List<Models.Order>());
+            }
+        }
 
     }
 }

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/31/2019 21:43:07
+-- Date Created: 04/02/2019 21:47:57
 -- Generated from EDMX file: C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\Models\ShoppingCarts.edmx
 -- --------------------------------------------------
 
@@ -33,6 +33,9 @@ IF OBJECT_ID(N'[dbo].[Orders]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[OrderDetails]', 'U') IS NOT NULL
     DROP TABLE [dbo].[OrderDetails];
+GO
+IF OBJECT_ID(N'[dbo].[ProductComments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ProductComments];
 GO
 
 -- --------------------------------------------------
@@ -74,6 +77,16 @@ CREATE TABLE [dbo].[OrderDetails] (
 );
 GO
 
+-- Creating table 'ProductComments'
+CREATE TABLE [dbo].[ProductComments] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [UserId] nvarchar(max)  NOT NULL,
+    [Content] nvarchar(max)  NOT NULL,
+    [CreateDate] datetime  NOT NULL,
+    [ProductId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -93,6 +106,12 @@ GO
 -- Creating primary key on [Id] in table 'OrderDetails'
 ALTER TABLE [dbo].[OrderDetails]
 ADD CONSTRAINT [PK_OrderDetails]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ProductComments'
+ALTER TABLE [dbo].[ProductComments]
+ADD CONSTRAINT [PK_ProductComments]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
