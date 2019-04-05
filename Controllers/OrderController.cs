@@ -78,6 +78,7 @@ namespace ShoppingCarts.Controllers
 
                 }
                 return Content("訂購成功");
+                    currentcart.ClearCart();
             }
             return View();
         }

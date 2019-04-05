@@ -59,11 +59,11 @@ namespace ShoppingCarts
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "207566209572-je69chdlri26ku0r0j3bbad2lquffjdm.apps.googleusercontent.com",
+                ClientSecret = "bvt3AgBUacY_3pq-yOhEAg-v"
+            });
         }
     }
 }
