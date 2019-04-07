@@ -21,6 +21,7 @@ namespace ShoppingCarts.Controllers
         {
             if( this.ModelState.IsValid)
             {
+                int Id = 0;
                 //取得目前購物車
                 var currentcart = Models.Cart.Operation.GetCurrentCart();
 
@@ -42,6 +43,7 @@ namespace ShoppingCarts.Controllers
                     try
                     {
                         db.SaveChanges();
+                        Id = order.Id;
                     }
                     catch (DbEntityValidationException deEx)
                     {
@@ -77,9 +79,13 @@ namespace ShoppingCarts.Controllers
                     }
 
                 }
+
                 currentcart.ClearCart();
-                return Content("訂購成功");
-                    
+                // return Content("訂購成功");
+                TempData["Success"] = "訂購成功";
+                return RedirectToAction("MyOrderDetail", new { id = Id });
+               
+
             }
             return View();
         }
@@ -99,6 +105,7 @@ namespace ShoppingCarts.Controllers
         }
         public ActionResult MyOrderDetail(int id)
         {
+
             using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())
             {
                 var result = (from s in db.OrderDetails
