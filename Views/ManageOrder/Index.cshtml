@@ -6,10 +6,18 @@
 }
 
 <h2>訂單列表</h2>
-@using (Html.BeginForm("SearchByUserName", "ManageOrder"))
+@using (Html.BeginForm("SearchByUserName", "ManageOrder", new { }, FormMethod.Post, new { @class = "form-inline" }))
 {
-    <span>會員名稱</span>
-    @Html.TextBox("UserName", null, new { @class = "btn-info" })
+<select class="form-control" id="SearchType" name="SearchType">
+    
+    
+    <option value="@Html.DisplayNameFor(model => model.UserId)">購買會員</option>
+    <option value="@Html.DisplayNameFor(model => model.ReceiverPhone)">收貨人姓名</option>
+    <option value="@Html.DisplayNameFor(model => model.ReceiverAddress)">收貨人電話</option>
+    <option value="@Html.DisplayNameFor(model => model.ReceiverName)">收貨人住址</option>
+    
+</select>
+    @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "輸入查詢文字" })
     <input type="submit" value="搜尋" class="btn btn-default" />
 }
 <table class="table">

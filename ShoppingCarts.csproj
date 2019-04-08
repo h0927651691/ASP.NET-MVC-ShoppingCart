@@ -189,6 +189,7 @@
       <DependentUpon>ShoppingCarts.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderModel\Ship.cs" />
+    <Compile Include="Models\OrderPartial.cs" />
     <Compile Include="Models\PatialClass.cs" />
     <Compile Include="Models\Product.cs">
       <DependentUpon>ShoppingCarts.tt</DependentUpon>
