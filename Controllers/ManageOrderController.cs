@@ -71,6 +71,7 @@ namespace ShoppingCarts.Controllers
 
         public ActionResult SearchByUserName(string SearchType,string SearchString)
         {
+            //判斷為查詢使用者
             if(SearchType == "UserId")
             {                //儲存查詢出來的UserId
                 string searchUserId = null;
@@ -100,6 +101,7 @@ namespace ShoppingCarts.Controllers
                 }
 
             }
+            //判斷為查詢收件人電話
             else if (SearchType == "ReceiverPhone")
             {
                 using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())
@@ -111,6 +113,7 @@ namespace ShoppingCarts.Controllers
                     return View("Index", result);
                 }
             }
+            //判斷為查詢收件人地址
             else if (SearchType == "ReceiverAddress")
             {
                 using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())
@@ -122,6 +125,7 @@ namespace ShoppingCarts.Controllers
                     return View("Index", result);
                 }
             }
+            //判斷為查詢收件人名稱
             else if (SearchType == "ReceiverName")
             {
                 using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())

@@ -36,6 +36,20 @@ namespace ShoppingCarts.Models.Cart
                 return totalAmount;
             }
         }
+        //public int ProductQuantity
+        //{
+        //    get
+        //    {
+        //        int ProductId = 0;
+        //        int totalQuantity = 0;
+        //        foreach (var cartItem in this.cartItems)
+        //        {
+        //            ProductId = cartItem.Id;
+        //            totalQuantity = cartItem.Quantity;
+        //        }
+        //        return 
+        //    }
+        //}
         //新增一筆Product，使用ProductId
         public bool AddProduct(int ProductId)
         {
@@ -79,6 +93,7 @@ namespace ShoppingCarts.Models.Cart
             this.cartItems.Add(cartItem);
             return true;
         }
+
         public bool RemoveProduct(int ProductId)
         {
             var findItem = this.cartItems
@@ -110,6 +125,7 @@ namespace ShoppingCarts.Models.Cart
             {
                 result.Add(new Models.OrderDetail()
                 {
+                  
                     Name = cartItem.Name,
                     Price = cartItem.Price,
                     Quantity = cartItem.Quantity,
@@ -119,11 +135,14 @@ namespace ShoppingCarts.Models.Cart
             return result;
         }
 
+
+
         #region IEnumerator
         IEnumerator<CartItem> IEnumerable<CartItem>.GetEnumerator()
     {
-        return this.cartItems.GetEnumerator();
-    }
+            return this.cartItems.GetEnumerator();
+
+        }
 
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
     {

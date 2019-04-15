@@ -60,7 +60,7 @@ namespace ShoppingCarts.Controllers
         public ActionResult AddComment(int id,string Content)
         {
             //取得目前登入使用者Id
-            var userId = HttpContext.User.Identity.GetUserId();
+            var userId = HttpContext.User.Identity.GetUserName();
 
             var currentDateTime = DateTime.Now;
 
@@ -70,7 +70,6 @@ namespace ShoppingCarts.Controllers
                 Content = Content,
                 UserId = userId,
                 CreateDate = currentDateTime
-
             };
             
             using (Models.ShoppingCartsEntities db = new Models.ShoppingCartsEntities())

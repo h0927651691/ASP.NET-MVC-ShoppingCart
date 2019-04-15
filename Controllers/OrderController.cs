@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
-
+using System.Data.SqlClient;
 namespace ShoppingCarts.Controllers
 {
     public class OrderController : Controller
@@ -21,6 +21,7 @@ namespace ShoppingCarts.Controllers
         {
             if( this.ModelState.IsValid)
             {
+                //暫存訂單編號
                 int Id = 0;
                 //取得目前購物車
                 var currentcart = Models.Cart.Operation.GetCurrentCart();
@@ -43,6 +44,7 @@ namespace ShoppingCarts.Controllers
                     try
                     {
                         db.SaveChanges();
+                        //取得訂單編號
                         Id = order.Id;
                     }
                     catch (DbEntityValidationException deEx)
@@ -51,11 +53,10 @@ namespace ShoppingCarts.Controllers
                         {
                             foreach (var dbValidationError in validationError.ValidationErrors)
                             {
-                                throw new Exception( dbValidationError.ErrorMessage);
+                                throw new Exception(dbValidationError.ErrorMessage);
                             }
                         }
                     }
-
                     //db.SaveChanges();
 
                     //取得購物車OrderDetail物件
@@ -75,17 +76,24 @@ namespace ShoppingCarts.Controllers
                             {
                                 throw new Exception(dbValidationError.ErrorMessage);
                             }
-                        }
+                        }  
                     }
-
+                    //取得購物車選擇商品數量
+                    var productAmount = currentcart.Select(c => new { c.Id, c.Quantity }).ToList();
+                    //將商品庫存檢調購物車數量後，更新至資料庫
+                    foreach (var item in productAmount)
+                    {
+                        var result = (from s in db.Products where s.Id == item.Id select s).FirstOrDefault();
+                        result.Quantity = result.Quantity - item.Quantity;
+                        db.SaveChanges();
+                    }
+                    
                 }
+                
 
                 currentcart.ClearCart();
-                // return Content("訂購成功");
                 TempData["Success"] = "訂購成功";
                 return RedirectToAction("MyOrderDetail", new { id = Id });
-               
-
             }
             return View();
         }
