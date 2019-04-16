@@ -3,7 +3,7 @@
     var currentCart = ShoppingCarts.Models.Cart.Operation.GetCurrentCart();
 }
     
-<a id="CartDropDown" class="dropdown-toggle" data-toggle="dropdown">
+<a  id="CartDropDown" class="dropdown-toggle nav-link " data-toggle="dropdown">
     @String.Format("共{0}元 ({1})", currentCart.TotalAmount,currentCart.Count)
     <span class="caret"></span>
 </a>
@@ -12,7 +12,7 @@
     {
         foreach (var cartitem in currentCart)
         {
-            <li class="col-xs-12">
+            <li class="dropdown-item">
 
                 <span class="col-xs-10 ">@cartitem.Name @cartitem.Price 元 X @cartitem.Quantity </span>
                 <span class="btn btn-danger col-xs-2" onclick="RemoveFromCart('@cartitem.Id')">

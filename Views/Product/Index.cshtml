@@ -7,8 +7,12 @@
 <h2>商品列表</h2>
 @{
     @Html.Label("", (string)ViewBag.ResultMessage, new { @class = "text-info" })
- }
-@Html.ActionLink("新增商品","Create","Product",new { },new {@class = "btn btn-info"})
+}
+@Html.ActionLink("新增商品", "Create", "Product", new { }, new { @class = "btn btn-info" })
+<button class="btn btn-primary" data-toggle="modal" data-target="#UploadModal">
+    使用Excel匯入資料
+</button>
+
 <table class="table">
     <thead>
         <tr>
@@ -22,30 +26,31 @@
 
         </tr>
     </thead>
-    <tbody >
+    <tbody>
         @foreach (var product in this.Model) /*使用foreach將所有商品列出*/
         {
-        <tr class="">
-            <td>
-                @Html.ActionLink(
-                "編輯","Edit", new { id = product.Id}, new { @class = "btn btn-default"}
-                )
-            </td>
-            <td>
-                @using (@Html.BeginForm("Delete", "Product", FormMethod.Post, new { @class = "Delete" }))
-                {
-                    @Html.Hidden("id", product.Id)
-                    <input type="submit" value="刪除" class="btn btn-danger">
-                }
-            </td>
-            <td><img src="@product.DefaultImageURL" width="100" height="100" alt="Alternate Text" /></td>
-            <td>@product.Id</td>
-            <td>@product.Name</td>
-            <td>@product.Description</td>
-            <td>@product.Price</td>
-            <td>@product.Quantity</td>
+            <tr class="">
+                <td>
+                    @Html.ActionLink(
+                    "編輯","Edit", new { id = product.Id}, new { @class = "btn btn-default"}
+                    )
+                </td>
+                <td>
+                    @using (@Html.BeginForm("Delete", "Product", FormMethod.Post, new { @class = "Delete" }))
+                    {
+                        @Html.Hidden("id", product.Id)
+                        <input type="submit" value="刪除" class="btn btn-danger">
+                    }
+                </td>
+                <td><img src="@product.DefaultImageURL" width="100" height="100" alt="Alternate Text" /></td>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price</td>
+                <td>@product.Quantity</td>
 
-        </tr>
+            </tr>
         }
     </tbody>
 </table>
+@Html.Partial("_UploadFile")

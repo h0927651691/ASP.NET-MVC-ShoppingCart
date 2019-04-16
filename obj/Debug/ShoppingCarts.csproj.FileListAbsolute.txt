@@ -35,3 +35,7 @@ C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\Microsoft.Owin.Secur
 C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\Newtonsoft.Json.pdb
 C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\PagedList.dll
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\PagedList.Mvc.dll
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\PagedList.xml
+C:\Users\h0927\source\repos\ShoppingCarts\ShoppingCarts\bin\PagedList.Mvc.xml
